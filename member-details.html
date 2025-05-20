@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        .info-group {
+            margin-bottom: 15px;
+        }
+        .info-group label {
+            font-weight: bold;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px; /* Add margin to separate buttons */
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Member Information</h2>
+        <div id="memberInfo">
+            <!-- Member details will be shown here -->
+        </div>
+        <button class="btn" onclick="goBack()">Go Back</button>
+        <!-- New button for submitting authorization request -->
+        <button class="btn" onclick="submitAuthorizationRequest()">Submit Authorization Request</button>
+    </div>
+
+    <script>
+        // Function to go back to the previous page (index)
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+
+        // Function to handle the submission of the authorization request
+        function submitAuthorizationRequest() {
+            // You can modify the URL below based on where you want to redirect for the Authorization Request form
+            window.location.href = 'authorizationRequest.html'; // Replace with the actual path to your authorization form
+        }
+
+        // Load member data from localStorage
+        window.onload = function() {
+            var member = JSON.parse(localStorage.getItem('member'));
+
+            if (member) {
+                var memberInfo = `
+                    <div class="info-group"><label>Member ID:</label> ${member.id}</div>
+                    <div class="info-group"><label>Name:</label> ${member.name}</div>
+                    <div class="info-group"><label>Eligible:</label> ${member.eligible ? 'Yes' : 'No'}</div>
+                    <div class="info-group"><label>Phone:</label> ${member.phone}</div>
+                    <div class="info-group"><label>Date of Birth:</label> ${member.dob}</div>
+                    <div class="info-group"><label>Gender:</label> ${member.gender}</div>
+                    <div class="info-group"><label>Health Plan:</label> ${member.healthPlan}</div>
+		    <div class="info-group"><label>Start Date:</label> ${member.startDate}</div>
+                `;
+                document.getElementById('memberInfo').innerHTML = memberInfo;
+            } else {
+                alert('No member found.');
+                window.location.href = 'index.html';
+            }
+        };
+    </script>
+</body>
+</html>

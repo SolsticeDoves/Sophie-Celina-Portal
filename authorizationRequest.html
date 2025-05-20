@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Submit Authorization Request</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      padding: 25px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+    input, select {
+      width: 97.4%;
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    input[type="date"] {
+      padding: 6px;
+    }
+    .btn {
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #45a049;
+    }
+    .error {
+      color: red;
+      margin-top: -10px;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Authorization Request Form</h2>
+    <form id="authForm">
+      <div class="form-group">
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" required />
+      </div>
+
+      <div class="form-group">
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" required />
+      </div>
+
+      <div class="form-group">
+        <label for="authType">Authorization Type:</label>
+        <select id="authType" required>
+          <option value="">--Select--</option>
+          <option value="BHT">BHT</option>
+          <option value="CBAS">CBAS</option>
+          <option value="DME">DME</option>
+          <option value="ECM">ECM</option>
+          <option value="Incontinence">Incontinence</option>
+          <option value="Community Supports">Community Supports</option>
+          <option value="MED">MED</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="location">Patient Location:</label>
+        <select id="location" required>
+          <option value="">--Select--</option>
+          <option value="Home">Home</option>
+          <option value="SNF">SNF</option>
+          <option value="Board and Care">Board and Care</option>
+          <option value="Acute Hospital">Acute Hospital</option>
+          <option value="Homeless">Homeless</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="urgent">Is Urgent?</label>
+        <select id="urgent" required>
+          <option value="">--Select--</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="diagnosis">Primary Diagnosis Code:</label>
+        <input type="text" id="diagnosis" required />
+      </div>
+
+      <div class="form-group">
+        <label for="serviceCode1">Service Code 1:</label>
+        <input type="text" id="serviceCode1" required />
+      </div>
+
+      <div class="form-group">
+        <label for="modifier1">Modifier 1:</label>
+        <input type="text" id="modifier1" required />
+      </div>
+
+      <div class="form-group">
+        <label for="units1">Units 1:</label>
+        <input type="number" id="units1" required />
+      </div>
+
+      <div class="form-group">
+        <label for="serviceCode2">Service Code 2:</label>
+        <input type="text" id="serviceCode2" required />
+      </div>
+
+      <div class="form-group">
+        <label for="modifier2">Modifier 2:</label>
+        <input type="text" id="modifier2" required />
+      </div>
+
+      <div class="form-group">
+        <label for="units2">Units 2:</label>
+        <input type="number" id="units2" required />
+      </div>
+
+      <div class="form-group">
+        <label for="pdfUpload">Attach PDF File:</label>
+        <input type="file" id="pdfUpload" accept="application/pdf" required />
+      </div>
+
+      <button type="submit" class="btn">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('authForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const authType = document.getElementById('authType').value;
+      const location = document.getElementById('location').value;
+      const diagnosis = document.getElementById('diagnosis').value.trim();
+      const serviceCode1 = document.getElementById('serviceCode1').value.trim().toUpperCase();
+      const modifier1 = document.getElementById('modifier1').value.trim().toUpperCase();
+      const units1 = parseInt(document.getElementById('units1').value);
+      const serviceCode2 = document.getElementById('serviceCode2').value.trim().toUpperCase();
+      const modifier2 = document.getElementById('modifier2').value.trim().toUpperCase();
+      const units2 = parseInt(document.getElementById('units2').value);
+      const pdfUpload = document.getElementById('pdfUpload').files[0];
+
+      // Validations
+      if (authType !== "Community Supports") {
+        alert("Only 'Community Supports' is allowed as the Authorization Type.");
+        return;
+      }
+
+      if (location !== "Home") {
+        alert("Only 'Home' is allowed for Patient Location.");
+        return;
+      }
+
+      if (!diagnosis) {
+        alert("Primary Diagnosis Code is required.");
+        return;
+      }
+
+      if (serviceCode1 !== "S5170") {
+        alert("Service Code 1 must be S5170.");
+        return;
+      }
+
+      if (modifier1 !== "U6") {
+        alert("Modifier 1 must be U6.");
+        return;
+      }
+
+      if (units1 !== 168) {
+        alert("Units 1 must be 168.");
+        return;
+      }
+
+      if (serviceCode2 !== "S9470") {
+        alert("Service Code 2 must be S9470.");
+        return;
+      }
+
+      if (modifier2 !== "U6") {
+        alert("Modifier 2 must be U6.");
+        return;
+      }
+
+      if (units2 !== 2) {
+        alert("Units 2 must be 2.");
+        return;
+      }
+
+      if (!pdfUpload || pdfUpload.type !== "application/pdf") {
+        alert("You must attach a valid PDF file.");
+        return;
+      }
+
+      // All validations passed - redirect
+      window.location.href = "authorization-confirmation.html";
+    });
+  </script>
+</body>
+</html>

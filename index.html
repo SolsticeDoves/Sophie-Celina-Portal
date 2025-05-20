@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eligibility Check Portal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+        }
+        .input-group input {
+            width: 96.7%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 2px solid #ddd;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Eligibility Check</h2>
+        <div class="input-group">
+            <label for="memberId">Member ID</label>
+            <input type="text" id="memberId" placeholder="Enter Member ID">
+        </div>
+        <div class="input-group">
+            <label for="dob">Date of Birth (MM/DD/YYYY)</label>
+            <input type="text" id="dob" placeholder="Enter Date of Birth">
+        </div>
+        <button class="btn" onclick="checkEligibility()">Check Eligibility</button>
+    </div>
+
+    <script>
+        function checkEligibility() {
+            var memberId = document.getElementById('memberId').value;
+            var dob = document.getElementById('dob').value;
+
+            if (memberId && dob) {
+                // Hard-coded fake member data
+                var members = [
+                    	{ id: '92846436W', name: 'Luis Velez', dob: '03/02/1954', gender: 'Male', phone: '(358) 246-5800', healthPlan: 'Health Net', eligible: true, startDate: 				'01/23/2018' },
+                    	{ id: '98838292D', name: 'Cassandra Mcneil', dob: '08/24/1982', gender: 'Female', phone: '(479) 849-2171', healthPlan: 'CalViva', eligible: true, startDate: 				'02/10/2018' },
+                    	{ id: '92713019Z', name: 'David Cantu', dob: '10/15/1941', gender: 'Male', phone: '(257) 192-7562', healthPlan: 'Imperial Valley', eligible: true, startDate: 				'06/14/2020' },
+			{ id: '96148742K', name: 'Lauren Nelson', dob: '12/05/1979', gender: 'Female', phone: '(404) 754-0303', healthPlan: 'Health Net', eligible: true, startDate: 				'07/10/2020' },
+			{ id: '95501203M', name: 'Joseph Barrett', dob: '05/31/1956', gender: 'Male', phone: '(414) 733-0442', healthPlan: 'CalViva', eligible: true, startDate: 				'03/03/2017' },
+			{ id: '99012345C', name: 'Teresa Joseph', dob: '11/12/1987', gender: 'Female', phone: '(386) 457-1986', healthPlan: 'CalViva', eligible: true, startDate: 				'04/01/2017' },
+			{ id: '98372645R', name: 'Mark Pittman', dob: '03/29/1950', gender: 'Male', phone: '(657) 826-9182', healthPlan: 'Imperial Valley', eligible: true, startDate: 				'11/11/2021' },
+			{ id: '92638475H', name: 'Angela Avery', dob: '06/14/1949', gender: 'Female', phone: '(643) 729-2752', healthPlan: 'Health Net', eligible: true, startDate: 				'12/08/2021' },
+			{ id: '95827461M', name: 'Gregory Baldwin', dob: '02/07/1973', gender: 'Male', phone: '(825) 692-9176', healthPlan: 'Health Net', eligible: true, startDate: 				'05/29/2024' },
+			{ id: '99128463K', name: 'Karen Glass', dob: '10/30/1984', gender: 'Female', phone: '(981) 362-7382', healthPlan: 'CalViva', eligible: true, startDate: 				'06/20/2024' },
+            		{ id: '93928374W', name: 'Curtis Graham', dob: '07/20/1965', gender: 'Male', phone: '(425) 537-7081', healthPlan: 'Imperial Valley', eligible: true, startDate: 			'08/05/2019' },
+            		{ id: '96475834P', name: 'Ellen Barry', dob: '01/04/1992', gender: 'Female', phone: '(783) 537-7283', healthPlan: 'CalViva', eligible: true, startDate: 				'09/02/2019' },
+            		{ id: '94928164Q', name: 'Donald Reid', dob: '11/11/1958', gender: 'Male', phone: '(942) 317-6842', healthPlan: 'Health Net', eligible: true, startDate: 				'03/14/2022' },
+            		{ id: '91123847U', name: 'Anna Kramer', dob: '04/22/1945', gender: 'Female', phone: '(631) 536-7392', healthPlan: 'Imperial Valley', eligible: true, startDate: 			'04/06/2022' },
+            		{ id: '96423816B', name: 'Tyler Chapman', dob: '03/01/1990', gender: 'Male', phone: '(826) 758-3829', healthPlan: 'Health Net', eligible: true, startDate: 				'07/18/2020' },
+            		{ id: '98923745Y', name: 'Kathleen King', dob: '09/19/1968', gender: 'Female', phone: '(251) 927-3847', healthPlan: 'CalViva', eligible: true, startDate: 				'08/07/2020' },
+            		{ id: '92634728E', name: 'Scott Wolfe', dob: '02/14/1953', gender: 'Male', phone: '(382) 645-8372', healthPlan: 'Imperial Valley', eligible: true, startDate: 				'10/23/2018' },
+            		{ id: '98365247N', name: 'Elizabeth Garza', dob: '06/07/1981', gender: 'Female', phone: '(472) 264-8371', healthPlan: 'Health Net', eligible: true, startDate: 				'11/19/2018' },
+            		{ id: '92937461A', name: 'Raymond Sutton', dob: '11/23/1952', gender: 'Male', phone: '(368) 826-7351', healthPlan: 'CalViva', eligible: true, startDate: 				'02/28/2023' },
+           		{ id: '94127364S', name: 'Stephanie Gibbs', dob: '12/18/1975', gender: 'Female', phone: '(845) 315-2672', healthPlan: 'Imperial Valley', eligible: true, startDate: 			'03/28/2023' },
+           		{ id: '96427385Z', name: 'Joshua Glenn', dob: '08/26/1993', gender: 'Male', phone: '(361) 584-6351', healthPlan: 'Health Net', eligible: true, startDate: 				'01/17/2021' },
+          		{ id: '93574862X', name: 'Paula Bryan', dob: '07/03/1948', gender: 'Female', phone: '(432) 836-1282', healthPlan: 'CalViva', eligible: true, startDate: 				'02/13/2021' },
+         		{ id: '99483716T', name: 'Timothy Hartman', dob: '05/16/1971', gender: 'Male', phone: '(964) 374-5923', healthPlan: 'Imperial Valley', eligible: true, startDate: 			'06/11/2018' },
+            		{ id: '94287413F', name: 'Marsha Christensen', dob: '01/09/1955', gender: 'Female', phone: '(589) 631-4821', healthPlan: 'Health Net', eligible: true, startDate: 			'07/07/2018' },
+                    	{ id: '95823741J', name: 'Frank Chandler', dob: '04/28/1943', gender: 'Male', phone: '(341) 586-7239', healthPlan: 'CalViva', eligible: true, startDate: 				'09/29/2022' },
+                    	{ id: '98123754H', name: 'Samuel Flores', dob: '12/01/1964', gender: 'Male', phone: '(934) 526-4821', healthPlan: 'Imperial Valley', eligible: true, startDate: 			'10/29/2022' },
+                    	{ id: '95562371F', name: 'Christine Bishop', dob: '07/08/1989', gender: 'Female', phone: '(713) 489-3726', healthPlan: 'CalViva', eligible: true, startDate: 				'04/04/2017' },
+                    	{ id: '98712384C', name: 'Patrick Lyons', dob: '02/10/1959', gender: 'Male', phone: '(427) 295-1784', healthPlan: 'Health Net', eligible: true, startDate: 				'04/25/2017' },
+                    	{ id: '93642186B', name: 'Amy Massey', dob: '11/05/1976', gender: 'Female', phone: '(928) 451-9328', healthPlan: 'CalViva', eligible: true, startDate: 					'12/30/2020' },
+                    	{ id: '92478326P', name: 'Roger Huffman', dob: '09/30/1951', gender: 'Male', phone: '(361) 934-6735', healthPlan: 'Imperial Valley', eligible: true, startDate: 			'01/25/2021' },
+                    	{ id: '98753124K', name: 'Jessica Parks', dob: '04/16/1985', gender: 'Female', phone: '(751) 923-7581', healthPlan: 'Health Net', eligible: true, startDate: 				'08/09/2023' },
+                    	{ id: '94482619M', name: 'Johnny Kirby', dob: '03/03/1960', gender: 'Male', phone: '(987) 645-7321', healthPlan: 'CalViva', eligible: true, startDate: 					'09/06/2023' },
+                    	{ id: '96728345Q', name: 'Linda Owens', dob: '06/25/1947', gender: 'Female', phone: '(417) 532-4938', healthPlan: 'Imperial Valley', eligible: true, startDate: 			'05/12/2019' },
+                    	{ id: '99918374E', name: 'Gabriel Contreras', dob: '10/27/1970', gender: 'Male', phone: '(528) 194-2385', healthPlan: 'Health Net', eligible: true, startDate: 				'06/06/2019' },
+                    	{ id: '92384157T', name: 'Janet Schultz', dob: '01/18/1991', gender: 'Female', phone: '(398) 649-1927', healthPlan: 'CalViva', eligible: true, startDate: 				'10/15/2024' },
+                    	{ id: '93472851Z', name: 'Todd Caldwell', dob: '08/14/1957', gender: 'Male', phone: '(749) 812-6834', healthPlan: 'Imperial Valley', eligible: true, startDate: 			'11/09/2024' },
+                    	{ id: '96938415X', name: 'Susan Greer', dob: '12/09/1980', gender: 'Female', phone: '(243) 819-6384', healthPlan: 'Health Net', eligible: true, startDate: 				'02/21/2020' },
+                    	{ id: '94723614W', name: 'Jimmy Sanchez', dob: '05/23/1946', gender: 'Male', phone: '(289) 348-4627', healthPlan: 'CalViva', eligible: true, startDate: 				'03/13/2020' },
+                    	{ id: '96138427C', name: 'Carolyn Bridges', dob: '11/17/1982', gender: 'Female', phone: '(517) 819-2738', healthPlan: 'Imperial Valley', eligible: true, startDate: 			'07/01/2017' },
+                    	{ id: '98429173U', name: 'Edward Lewis', dob: '02/28/1942', gender: 'Male', phone: '(624) 329-9184', healthPlan: 'Health Net', eligible: true, startDate: 				'07/25/2017' },
+                    	{ id: '99927483G', name: 'Amber Brewer', dob: '09/04/1967', gender: 'Female', phone: '(918) 536-2374', healthPlan: 'CalViva', eligible: true, startDate: 				'01/04/2024' },
+                    	{ id: '93715284B', name: 'Michael Lindsey', dob: '06/30/1990', gender: 'Male', phone: '(748) 192-4837', healthPlan: 'Imperial Valley', eligible: true, startDate: 			'01/31/2024' },
+                    	{ id: '99238451J', name: 'Theresa Dawson', dob: '04/12/1983', gender: 'Female', phone: '(385) 142-9834', healthPlan: 'Health Net', eligible: true, startDate: 				'06/03/2022' },
+                    	{ id: '92513846Y', name: 'Maria Acosta', dob: '10/21/1944', gender: 'Female', phone: '(951) 826-3841', healthPlan: 'CalViva', eligible: true, startDate: 				'06/26/2022' },
+                    	{ id: '96238475L', name: 'Carlos Moyer', dob: '07/17/1955', gender: 'Male', phone: '(429) 783-2948', healthPlan: 'Imperial Valley', eligible: true, startDate: 				'09/21/2021' },
+                    	{ id: '97518462V', name: 'Nancy Adkins', dob: '01/13/1974', gender: 'Female', phone: '(381) 627-3814', healthPlan: 'Health Net', eligible: true, startDate: 				'10/13/2021' },
+                    	{ id: '92837461N', name: 'Dennis Hodge', dob: '03/08/1988', gender: 'Male', phone: '(893) 246-8172', healthPlan: 'CalViva', eligible: true, startDate: 					'03/22/2018' },
+                    	{ id: '98617283D', name: 'Donna Mcclure', dob: '12/25/1952', gender: 'Female', phone: '(634) 328-5174', healthPlan: 'Imperial Valley', eligible: true, startDate: 			'04/17/2018' },
+                    	{ id: '99014836M', name: 'Jeremy Decker', dob: '09/28/1979', gender: 'Male', phone: '(574) 912-7384', healthPlan: 'Health Net', eligible: true, startDate: 				'12/01/2023' },
+                    	{ id: '94287134A', name: 'Elaine Pace', dob: '01/22/1963', gender: 'Female', phone: '(875) 934-3847', healthPlan: 'CalViva', eligible: true, startDate: 				'12/25/2023' },
+                    	{ id: '93571248G', name: 'Benjamin Long', dob: '06/04/1950', gender: 'Male', phone: '(573) 294-3816', healthPlan: 'Imperial Valley', eligible: true, startDate: 			'05/05/2020' },
+                        { id: '98847261S', name: 'Bonnie Small', dob: '11/09/1977', gender: 'Female', phone: '(983) 425-2948', healthPlan: 'Health Net', eligible: true, startDate: 				'05/30/2020' },
+                        { id: '92748162D', name: 'Timothy Delaney', dob: '10/03/1959', gender: 'Male', phone: '(915) 284-7638', healthPlan: 'CalViva', eligible: true, startDate: 				'08/16/2018' },
+                        { id: '91624389V', name: 'Dorothy Skinner', dob: '08/14/1986', gender: 'Female', phone: '(627) 281-1934', healthPlan: 'Imperial Valley', eligible: true, startDate: 			'09/14/2018' },
+                        { id: '95382147T', name: 'Patrick Gilmore', dob: '02/28/1948', gender: 'Male', phone: '(826) 391-4857', healthPlan: 'Health Net', eligible: true, startDate: 				'11/03/2022' },
+                        { id: '99174258K', name: 'Lori Ramsey', dob: '05/11/1982', gender: 'Female', phone: '(945) 182-7364', healthPlan: 'CalViva', eligible: true, startDate: 				'11/27/2022' },
+                        { id: '93481263Y', name: 'Gary Romero', dob: '09/19/1966', gender: 'Male', phone: '(562) 839-1048', healthPlan: 'Imperial Valley', eligible: true, startDate: 				'01/29/2019' },
+                        { id: '99628514R', name: 'Tina Sharp', dob: '03/23/1954', gender: 'Female', phone: '(721) 846-4732', healthPlan: 'Health Net', eligible: true, startDate: 				'02/25/2019' },
+                        { id: '92571846Z', name: 'Gerald Reeves', dob: '12/12/1945', gender: 'Male', phone: '(918) 327-8451', healthPlan: 'CalViva', eligible: true, startDate: 				'06/07/2023' },
+                        { id: '98936524F', name: 'Tracey Erickson', dob: '07/06/1975', gender: 'Female', phone: '(657) 298-6374', healthPlan: 'Imperial Valley', eligible: true, startDate: 			'06/30/2023' },
+                        { id: '97351862E', name: 'Diane Hogan', dob: '09/16/1983', gender: 'Female', phone: '(941) 352-2946', healthPlan: 'Health Net', eligible: true, startDate: 				'03/08/2021' },
+                        { id: '91736482M', name: 'Bobby Kramer', dob: '04/18/1962', gender: 'Male', phone: '(713) 914-3872', healthPlan: 'CalViva', eligible: true, startDate: 					'03/30/2021' },
+                        { id: '95483627C', name: 'Robin Joseph', dob: '08/30/1957', gender: 'Female', phone: '(382) 742-8163', healthPlan: 'Imperial Valley', eligible: true, startDate: 			'07/23/2024' },
+                        { id: '94817253U', name: 'Henry Bell', dob: '06/17/1949', gender: 'Male', phone: '(951) 287-7362', healthPlan: 'Health Net', eligible: true, startDate: 				'08/14/2024' },
+                        { id: '99473521L', name: 'Carmen White', dob: '10/11/1991', gender: 'Female', phone: '(387) 849-3857', healthPlan: 'CalViva', eligible: true, startDate: 				'10/02/2019' },
+                        { id: '98847263S', name: 'Jason Morton', dob: '11/03/1956', gender: 'Male', phone: '(248) 937-2853', healthPlan: 'Imperial Valley', eligible: true, startDate: 				'10/29/2019' },
+                        { id: '93274852M', name: 'Teresa Roy', dob: '12/19/1980', gender: 'Female', phone: '(846) 382-6512', healthPlan: 'Health Net', eligible: true, startDate: 				'04/19/2020' },
+                        { id: '94738264B', name: 'Larry Warner', dob: '01/04/1947', gender: 'Male', phone: '(739) 618-2394', healthPlan: 'CalViva', eligible: true, startDate: 					'05/16/2020' },
+                        { id: '96327418Z', name: 'Jill Barrett', dob: '05/15/1953', gender: 'Female', phone: '(693) 218-9271', healthPlan: 'Imperial Valley', eligible: true, startDate: 			'12/10/2017' },
+                        { id: '96138472N', name: 'Edwin Herrera', dob: '09/21/1961', gender: 'Male', phone: '(871) 395-1837', healthPlan: 'Health Net', eligible: true, startDate: 				'12/29/2017' },
+                        { id: '97516284G', name: 'Carrie Whitaker', dob: '08/10/1987', gender: 'Female', phone: '(982) 548-2971', healthPlan: 'CalViva', eligible: true, startDate: 				'09/08/2020' },
+                        { id: '98647325Y', name: 'Steven Garza', dob: '06/27/1955', gender: 'Male', phone: '(529) 813-6452', healthPlan: 'Imperial Valley', eligible: true, startDate: 				'10/03/2020' },
+                        { id: '94926381P', name: 'Theresa West', dob: '02/18/1969', gender: 'Female', phone: '(839) 726-1938', healthPlan: 'Health Net', eligible: true, startDate: 				'01/08/2022' },
+                        { id: '98421653A', name: 'Jonathan Thornton', dob: '02/14/1969', gender: 'Male', phone: '(841) 293-3847', healthPlan: 'CalViva', eligible: true, startDate: 				'01/29/2022' },
+                        { id: '98627314L', name: 'Tina Snyder', dob: '03/12/1978', gender: 'Female', phone: '(429) 836-2814', healthPlan: 'Imperial Valley', eligible: true, startDate: 			'05/01/2018' },
+                        { id: '98746153D', name: 'Gary Warner', dob: '10/26/1964', gender: 'Male', phone: '(684) 391-7265', healthPlan: 'Health Net', eligible: true, startDate: 				'05/22/2018' },
+                        { id: '92238476R', name: 'Cassandra Adams', dob: '07/31/1957', gender: 'Female', phone: '(756) 492-1863', healthPlan: 'CalViva', eligible: true, startDate: 				'08/30/2021' },
+                        { id: '93487621Z', name: 'David Barr', dob: '01/16/1992', gender: 'Male', phone: '(927) 365-2748', healthPlan: 'Imperial Valley', eligible: true, startDate: 				'09/25/2021' },
+                        { id: '96627315G', name: 'Joyce Rojas', dob: '09/09/1983', gender: 'Female', phone: '(419) 274-1983', healthPlan: 'Health Net', eligible: true, startDate: 				'02/16/2024' },
+                        { id: '99837254V', name: 'George Greer', dob: '05/02/1943', gender: 'Male', phone: '(321) 976-1834', healthPlan: 'CalViva', eligible: true, startDate: 					'03/10/2024' },
+                        { id: '95738216F', name: 'Nicholas Swanson', dob: '06/18/1946', gender: 'Male', phone: '(823) 576-1984', healthPlan: 'Imperial Valley', eligible: true, startDate: 			'06/27/2017' },
+                        { id: '97364812K', name: 'Catherine Whitman', dob: '04/05/1971', gender: 'Female', phone: '(748) 394-7265', healthPlan: 'Health Net', eligible: true, startDate: 			'07/17/2017' },
+                        { id: '92173458P', name: 'Ernest Olson', dob: '12/15/1955', gender: 'Male', phone: '(945) 394-6251', healthPlan: 'CalViva', eligible: true, startDate: 					'11/05/2023' },
+                        { id: '94238417N', name: 'Karen Cline', dob: '02/22/1976', gender: 'Female', phone: '(572) 481-2385', healthPlan: 'Imperial Valley', eligible: true, startDate: 			'11/29/2023' },
+                        { id: '96517243B', name: 'Melvin Guerrero', dob: '10/07/1990', gender: 'Male', phone: '(684) 219-8745', healthPlan: 'Health Net', eligible: true, startDate: 				'04/12/2019' },
+                        { id: '94836172X', name: 'Carmen Wolfe', dob: '03/13/1984', gender: 'Female', phone: '(839) 715-9462', healthPlan: 'CalViva', eligible: true, startDate: 				'05/07/2019' },
+                        { id: '93127546Y', name: 'Francis Salazar', dob: '09/20/1944', gender: 'Male', phone: '(628) 385-4932', healthPlan: 'Imperial Valley', eligible: true, startDate: 			'10/20/2017' },
+                        { id: '98627348L', name: 'Stacy Ford', dob: '11/12/1956', gender: 'Female', phone: '(381) 926-3847', healthPlan: 'Health Net', eligible: true, startDate: 				'11/13/2017' },
+                        { id: '95827463M', name: 'Anthony Bishop', dob: '01/26/1974', gender: 'Male', phone: '(738) 291-8374', healthPlan: 'CalViva', eligible: true, startDate: 				'02/08/2020' },
+                        { id: '97382645R', name: 'Nancy Erickson', dob: '12/09/1989', gender: 'Female', phone: '(682) 394-2847', healthPlan: 'Imperial Valley', eligible: true, startDate: 			'02/28/2020' },
+                        { id: '99518347U', name: 'Glen Mcpherson', dob: '10/20/1948', gender: 'Male', phone: '(971) 283-6483', healthPlan: 'Health Net', eligible: true, startDate: 				'07/09/2022' },
+                        { id: '98647392A', name: 'Marie Mays', dob: '07/18/1970', gender: 'Female', phone: '(832) 948-2651', healthPlan: 'CalViva', eligible: true, startDate: 					'01/13/2019' },
+                        { id: '99384725W', name: 'Eugene Mathews', dob: '08/03/1951', gender: 'Male', phone: '(861) 298-3745', healthPlan: 'Imperial Valley', eligible: true, startDate: 			'02/04/2019' },
+                        { id: '92238476E', name: 'Janet Hanson', dob: '06/11/1963', gender: 'Female', phone: '(581) 926-4728', healthPlan: 'Health Net', eligible: true, startDate: 				'02/04/2019' },
+                        { id: '93847263T', name: 'Leonard White', dob: '08/30/1981', gender: 'Male', phone: '(394) 285-9283', healthPlan: 'CalViva', eligible: true, startDate: 				'01/10/2022' },
+                        { id: '99127483C', name: 'Allison Mcguire', dob: '11/22/1977', gender: 'Female', phone: '(293) 194-8275', healthPlan: 'Imperial Valley', eligible: true, startDate: 			'09/04/2017' },
+                        { id: '97638472N', name: 'Daniel Estes', dob: '04/29/1945', gender: 'Male', phone: '(791) 298-3654', healthPlan: 'Health Net', eligible: true, startDate: 				'01/13/2019' },
+                        { id: '92638476P', name: 'Teresa Bartlett', dob: '03/15/1958', gender: 'Female', phone: '(619) 832-2947', healthPlan: 'CalViva', eligible: true, startDate: 				'01/13/2019' },
+                        { id: '99183746L', name: 'Craig Hinton', dob: '09/11/1966', gender: 'Male', phone: '(392) 174-9384', healthPlan: 'Imperial Valley', eligible: true, startDate: 				'09/04/2017' },
+                        { id: '98374519G', name: 'Angela Harmon', dob: '12/20/1986', gender: 'Female', phone: '(819) 625-4831', healthPlan: 'Health Net', eligible: true, startDate: 				'09/04/2017' }
+                ];
+
+                var member = members.find(function(m) {
+                    return m.id === memberId && m.dob === dob;
+                });
+
+                if (member) {
+                    localStorage.setItem('member', JSON.stringify(member));
+                    window.location.href = 'member-details.html';
+                } else {
+                    alert('Member not found or information is incorrect.');
+                }
+            } else {
+                alert('Please fill in both fields.');
+            }
+        }
+    </script>
+</body>
+</html>
