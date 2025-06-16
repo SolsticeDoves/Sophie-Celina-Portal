@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Confirmation</title>
+  <title>Authorization Confirmation</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -55,9 +55,14 @@
   <div class="confirmation-box">
     <h2>Thank you for your request</h2>
     <p>Please note decisions may take 2–3 weeks.</p>
+
+    <p><strong>Requested Start Date:</strong> <span id="startDate">Loading...</span></p>
+    <p><strong>Requested End Date:</strong> <span id="endDate">Loading...</span></p>
+
     <div class="confirmation-number" id="confirmationNumber">
       Confirmation Number: ...
     </div>
+
     <button class="btn" onclick="goHome()">Return to Portal</button>
   </div>
 
@@ -69,11 +74,20 @@
       return `${letters}-${numbers}`;
     }
 
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param) || 'Not Provided';
+    }
+
+    // Set confirmation number and date values
     document.getElementById('confirmationNumber').innerText =
       'Confirmation Number: ' + generateConfirmationNumber();
 
+    document.getElementById('startDate').innerText = getQueryParam('startDate');
+    document.getElementById('endDate').innerText = getQueryParam('endDate');
+
     function goHome() {
-      window.location.href = 'index.html'; // Or wherever you want to send them
+      window.location.href = 'authorizationRequest.html'; // Adjust if needed
     }
   </script>
 </body>
