@@ -64,7 +64,7 @@
   <script>
     function generateConfirmationNumber() {
       const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      const numbers = Math.floor(100 + Math.random() * 900);More actions
+      const numbers = Math.floor(100 + Math.random() * 900);
       const letters = Array.from({ length: 3 }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
       return `${letters}-${numbers}`;
     }
@@ -73,7 +73,6 @@
       'Confirmation Number: ' + generateConfirmationNumber();
 
     function goHome() {
-      window.location.href = 'Training Portal.html'; // Or wherever you want to send them
       window.location.href = 'index.html'; // Or wherever you want to send them
     }
   </script>
